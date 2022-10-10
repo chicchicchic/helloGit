@@ -26,9 +26,10 @@ function HomeScreen(props) {
 
             <span className="box-price">${food.price}</span>
 
-            <a href="#" className="btn">
-              add to cart
-            </a>
+            <Link to={"/food/" + food._id} className="btn">
+              Detail
+            </Link>
+    
           </li>
         ))}
       </ul>

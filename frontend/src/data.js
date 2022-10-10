@@ -7,7 +7,6 @@ export default {
       imgSource: "/images/1.jpg",
       price: 96,
       rating: 3.5,
-      category: 'Soup',
     },
     {
         _id: "2",
@@ -16,7 +15,6 @@ export default {
         imgSource: "/images/2.jpg",
         price: 96,
         rating: 3.5,
-        category: 'Rice',
       },
       {
         _id: "3",
@@ -25,7 +23,6 @@ export default {
         imgSource: "/images/3.jpg",
         price: 96,
         rating: 3.5,
-        category: 'Soup',
       },
       {
         _id: "4",
@@ -34,7 +31,6 @@ export default {
         imgSource: "/images/4.jpg",
         price: 96,
         rating: 3.5,
-        category: 'Noodle',
       },
       {
         _id: "5",
@@ -43,7 +39,6 @@ export default {
         imgSource: "/images/5.jpg",
         price: 96,
         rating: 3.5,
-        category: 'Noodle',
       },
     
   ],
