@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-// import data from "../data";
 import axios from 'axios';
+import { useDispatch, useSelector } from "react-redux";
+import { listFoods } from "../actions/foodActions";
 
 function HomeScreen(props) {
   
-  const [foods, setFoods] = useState([]);
+  const foodList = useSelector(state => state.foodList);
+  const { foods, loading, error } = foodList;
+  const dispatch = useDispatch();
 
+  // Dispatch show all foods 
   useEffect(() => {
-    const fetchData = async () => {
-      const {data} = await axios.get("/api/foods");
-      setFoods(data);
-    }
-    fetchData();
+    dispatch(listFoods());
   
     return () => {
       //
@@ -22,11 +22,7 @@ function HomeScreen(props) {
 
 
   return (
-    <div>
-      <h3 className="sub-heading">our dishes</h3>
-      <h1 className="heading">popular dishes</h1>
-
-      <ul className="dishes-container">
+      loading ? <div>Loading...</div> : error ? <div>{error}</div> : <ul className="dishes-container">
         {foods.map((food) => (
           <li key={food._id} className="box">
             <Link to={"/food/" + food._id} className="box-title">
@@ -51,8 +47,7 @@ function HomeScreen(props) {
           </li>
         ))}
       </ul>
-      
-    </div>
+        
   );
 }
 

@@ -1,9 +1,8 @@
-import logo from "./logo.svg";
 import {BrowserRouter, Link, Route, Routes} from 'react-router-dom'
 import "./App.css";
 import data from "./data";
-import FoodScreen from "./Pages/FoodSceen";
-import HomeScreen from "./Pages/HomeScreen";
+import FoodScreen from "./pages/FoodSceen";
+import HomeScreen from "./pages/HomeScreen";
 
 
 function App() {
@@ -35,13 +34,13 @@ function App() {
         {/* <!-- header section starts --> */}
         <header>
           <Link to="/" className="logo">
-            <i className="fas fa-utensils"></i> DXC Cuisine
+            <i className="fas fa-utensils"></i> Cuisine
           </Link>
 
           <nav className="navbar">
-            <a className="active" href="#home">
+            <Link to="/" className="active">
               home
-            </a>
+            </Link>
             <a href="#dishes">dishes</a>
             <a href="#about">about</a>
             <a href="#menu">menu</a>
@@ -81,14 +80,12 @@ function App() {
 
         {/* <!-- dishes section starts  --> */}
         <section className="dishes" id="dishes">
-          
+          <h3 className="sub-heading">our dishes</h3>
+          <h1 className="heading">popular dishes</h1>
 
           <Routes>
             <Route path="/food/:id" element={<FoodScreen/>}></Route>
             <Route path="/" exact={true} element={<HomeScreen/>}></Route>
-
-            {/* <Route path="/food/:id" component={FoodScreen} />
-            <Route path="/" exact={true} component={HomeScreen} /> */}
           </Routes>     
 
         </section>
