@@ -1,28 +1,29 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { listFoods } from "../actions/foodActions";
 
 function HomeScreen(props) {
-  
-  const foodList = useSelector(state => state.foodList);
+  const foodList = useSelector((state) => state.foodList);
   const { foods, loading, error } = foodList;
   const dispatch = useDispatch();
 
-  // Dispatch show all foods 
+  // Dispatch show all foods
   useEffect(() => {
     dispatch(listFoods());
-  
+
     return () => {
       //
-    }
-  }, [])
-  
-
+    };
+  }, []);
 
   return (
-      loading ? <div>Loading...</div> : error ? <div>{error}</div> : <ul className="dishes-container">
+    <div>
+      <h3 className="sub-heading">our dishes</h3>
+      <h1 className="heading">popular dishes</h1>
+      {loading ? (<div>Loading...</div>) : error ? (<div>{error}</div>) : (
+      <ul className="dishes-container">
         {foods.map((food) => (
           <li key={food._id} className="box">
             <Link to={"/food/" + food._id} className="box-title">
@@ -43,11 +44,11 @@ function HomeScreen(props) {
             <Link to={"/food/" + food._id} className="btn">
               Detail
             </Link>
-    
           </li>
         ))}
       </ul>
-        
+      )};
+    </div>
   );
 }
 

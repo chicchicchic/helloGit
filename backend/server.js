@@ -27,6 +27,16 @@ const data = require('./data')
 
 const app = express();
 
+//[GET] Details of food
+app.get("/api/foods/:id", (req, res) => {
+    const foodId = req.params.id;
+    const food = data.foods.find(x => x._id === foodId);
+    if(food)
+        res.send(food);
+    else
+        res.status(404).send({ msg: "Food Not Found." })
+});
+
 // [GET] All foods in data.js
 app.get("/api/foods", (req,res) => {
     res.send(data.foods);
@@ -51,17 +61,5 @@ app.get("/api/foods", (req,res) => {
 // app.use("/api/users", userRoute);
 // app.use("/api/foods", foodRoute);
 
-// app.get("/api/products/:id", (req, res) => {
-//     const productId = req.params.id;
-//     const product = data.products.find(x=>x._id === productId);
-//     if(product)
-//         res.send(product);
-//     else
-//         res.status(404).send({ msg: "Product Not Found." })
-// });
-// app.get("/api/products", (req, res) => {
-
-//     res.send(data.products);
-// });
 
 app.listen(5000, () => { console.log("Server started at http://localhost:5000") });

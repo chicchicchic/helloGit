@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 // import Cookies from 'js-cookie';
-import { foodListReducer } from './reducers/foodReducers';
+import { foodDetailsReducer, foodListReducer } from './reducers/foodReducers';
 
 
 // Nếu muốn lưu với Cookie (Server Side)
@@ -22,7 +22,7 @@ import { foodListReducer } from './reducers/foodReducers';
 const initialState = {};
 const reducer = combineReducers({
     foodList: foodListReducer,
-    // productDetails: productDetailsReducer,
+    foodDetails: foodDetailsReducer,
     // cart: cartReducer,
     // userSignin: userSigninReducer,
     // userRegister: userRegisterReducer,

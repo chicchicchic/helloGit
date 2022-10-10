@@ -80,8 +80,7 @@ function App() {
 
         {/* <!-- dishes section starts  --> */}
         <section className="dishes" id="dishes">
-          <h3 className="sub-heading">our dishes</h3>
-          <h1 className="heading">popular dishes</h1>
+          
 
           <Routes>
             <Route path="/food/:id" element={<FoodScreen/>}></Route>
