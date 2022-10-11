@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { detailsFood } from "../actions/foodActions";
 
 function FoodScreen(props) {
+  const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
+  let navigate = useNavigate(); 
   const foodDetails = useSelector((state) => state.foodDetails);
   const { food, loading, error } = foodDetails;
 
@@ -16,6 +18,11 @@ function FoodScreen(props) {
       //
     };
   }, []);
+
+  // Add To Cart Handle 
+  const handleAddToCart = () => {
+   navigate("/cart/" + id + "?quantity=" + quantity);
+  }
 
   return (
     <div>
@@ -62,19 +69,15 @@ function FoodScreen(props) {
                   Price: <span>${food.price}</span>
                 </li>
                 <li className="details-action-quantity">
-                  Quantity:
-                  <select>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                  Quantity: 
+                  <select value={quantity} onChange={(e) => {setQuantity(e.target.value)}}>
+                      {[...Array(food.countInTheKitchen).keys()].map(x => 
+                          <option key={x+1} value={x+1}>{x+1}</option>    
+                      )}
                   </select>
                 </li>
                 <li>
-                  <button className="btn details-action-add-cart-btn">
-                    Add to cart
-                  </button>
+                  {food.countInTheKitchen>0 && <button onClick={handleAddToCart}  className="btn details-action-add-cart-btn">Add to cart</button>} 
                 </li>
               </ul>
             </div>
